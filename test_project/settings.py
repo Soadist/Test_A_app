@@ -38,6 +38,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTH_USER_MODEL = 'users.User'
+
 ROOT_URLCONF = 'test_project.urls'
 
 TEMPLATES = [
@@ -84,6 +86,41 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
+
+LANGUAGE_CODE = 'ru'
+
+TIME_ZONE = 'Europe/Moscow'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+}
+
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'HIDE_USERS': False,
@@ -104,21 +141,5 @@ DJOSER = {
         'token_destroy': ['rest_framework.permissions.IsAuthenticated'],
     }
 }
-
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
-
-LANGUAGE_CODE = 'ru'
-
-TIME_ZONE = 'Europe/Moscow'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
-STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
