@@ -45,7 +45,7 @@ email: admin@example.com</br>
 pass: admin</br>
 
 ### Основные endpoint'ы:
-Все запросы, требующие авторизации, должны передаваться с ключом Authorization: Token <Token> в заголовке запроса.</br>
+Все запросы, требующие авторизации, должны передаваться с ключом Authorization: Token \<Token\> в заголовке запроса.</br>
 
 #### Регистрация пользователя:
 POST /api/users/</br>
