@@ -29,9 +29,9 @@ python manage.py runserver
 - python manage.py createsuperuser
 ```
 #### Заполнение .env:
-Чтобы добавить переменную в .env необходимо открыть файл .env в директории проекта ./test_project/ и поместить туда переменную в формате имя_переменной=значение.
+Чтобы добавить переменную в .env необходимо открыть файл .env в директории проекта ./test_project/ и поместить туда переменную в формате имя_переменной=значение.</br>
 Пример .env файла:
-
+```.env
 DB_ENGINE=my_db
 DB_NAME=db_name
 POSTGRES_USER=my_user
@@ -39,17 +39,17 @@ POSTGRES_PASSWORD=my_pass
 DB_HOST=db_host
 DB_PORT=db_port
 DJANGO_SECRET_KEY=django_secret
-
+```
 #### Superuser pass&email:
-email: admin@example.com
-pass: admin
+email: admin@example.com</br>
+pass: admin</br>
 
 ### Основные endpoint'ы:
-Все запросы, требующие авторизации, должны передаваться с ключом Authorization: Token <Token> в заголовке запроса.
+Все запросы, требующие авторизации, должны передаваться с ключом Authorization: Token <Token> в заголовке запроса.</br>
 
 #### Регистрация пользователя:
-POST /api/users/
-Пример тела запроса:
+POST /api/users/</br>
+Пример тела запроса:</br>
 ```json
 {
     "email": "test_1@example.com",
@@ -61,23 +61,23 @@ POST /api/users/
 ```
 
 #### Активация пользователя:
-POST /api/users/activation/
-В заголовке передаются ключи uid и token с данными из email-сообщения со ссылкой для активации.
-Ссылка для активации пользователя в email-сообщении имеет вид http://domain.com/activate/{uid}/{token}/
+POST /api/users/activation/</br>
+В заголовке передаются ключи uid и token с данными из email-сообщения со ссылкой для активации.</br>
+Ссылка для активации пользователя в email-сообщении имеет вид http://domain.com/activate/{uid}/{token}/</br>
 
 #### Получение токена авторизации:
-POST /api/auth/token/login/
-В теле запроса передаются ключи 'password' c паролем и 'email' с email пользователя. 
-В теле ответа передаётся ключ 'auth_token' с токеном авторизации.
-Не требуется авторизация.
+POST /api/auth/token/login/</br>
+В теле запроса передаются ключи 'password' c паролем и 'email' с email пользователя. </br>
+В теле ответа передаётся ключ 'auth_token' с токеном авторизации.</br>
+Не требуется авторизация.</br>
 
 #### Удаление токена авторизации:
-POST /api/auth/token/logout/
-Требуется авторизация.
+POST /api/auth/token/logout/</br>
+Требуется авторизация.</br>
 
 #### Добавление отчёта на сервер:
-POST /api/reports/ 
-Пример тела запроса в json:
+POST /api/reports/ </br>
+Пример тела запроса в json:</br>
 ```json
 {
     "start_datetime": "2021-07-30T12:53:30+03:00",
@@ -87,12 +87,12 @@ POST /api/reports/
     "calories": 2000
 }
 ```
-В теле ответа будет копия тела запроса при успешном добавлении, либо сообщение об ошибке. 
-Требуется авторизация.
+В теле ответа будет копия тела запроса при успешном добавлении, либо сообщение об ошибке.</br> 
+Требуется авторизация.</br>
 
 #### Получение списка отчётов для текущего пользователя:
-GET /api/reports/
-Пример ответа в json:
+GET /api/reports/</br>
+Пример ответа в json:</br>
 ```json
 [
     {
@@ -113,11 +113,11 @@ GET /api/reports/
     }
 ]
 ```
-Требуется авторизация.
+Требуется авторизация.</br>
 
 #### Получение статистики по отчётам:
-GET /api/reports/stats/
-Пример ответа в json:
+GET /api/reports/stats/</br>
+Пример ответа в json:</br>
 ```json
 {
     "count": 2,
@@ -126,10 +126,10 @@ GET /api/reports/stats/
     "total_duration": "02:00:30"
 }
 ```
-Требуется авторизация.
+Требуется авторизация.</br>
 
 #### Получение статистики по отчётам за текущий день с агрегацией по часам:
-GET /api/reports/stats/hourly/
+GET /api/reports/stats/hourly/</br>
 ```json
 [
     {
@@ -141,10 +141,10 @@ GET /api/reports/stats/hourly/
     }
 ]
 ```
-Требуется авторизация.
+Требуется авторизация.</br>
 
 #### Получение статистики по отчётам за текущий месяц с агрегацией по дням:
-GET /api/reports/stats/daily/
+GET /api/reports/stats/daily/</br>
 ```json
 [
     {
@@ -156,7 +156,7 @@ GET /api/reports/stats/daily/
     }
 ]
 ```
-Требуется авторизация.
+Требуется авторизация.</br>
 
 #### Автор:
 Алексей Полянцев.
