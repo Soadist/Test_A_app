@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth import get_user_model
+from django.db import models
 
 User = get_user_model()
 
@@ -13,7 +13,8 @@ class Report(models.Model):
 
     user = models.ForeignKey(
         User,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='reports'
     )
     start_datetime = models.DateTimeField(
         auto_now_add=False,
@@ -26,6 +27,7 @@ class Report(models.Model):
         blank=False
     )
     activity_type = models.CharField(
+        max_length=9,
         choices=ACTIVITY_TYPE,
         blank=False
     )
@@ -43,4 +45,8 @@ class Report(models.Model):
         verbose_name_plural = 'Отчёты'
 
     def __str__(self):
-        return str(self.activity_type)+' '+str(self.distance)
+        return (
+            str(self.user.username) + ' '
+            + str(self.activity_type) + ' '
+            + str(self.distance) + ' м'
+        )
